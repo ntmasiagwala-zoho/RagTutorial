@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>RAG App</h1>
+
+  <input id="q" placeholder="Ask something" />
+  <button onclick="ask()">Ask</button>
+
+  <pre id="result"></pre>
+
+  <script>
+    async function ask() {
+      const q = document.getElementById("q").value;
+
+      const res = await fetch("http://127.0.0.1:8000/ask?query=" + q, {
+        method: "GET"
+      });
+
+      const data = await res.json();
+      document.getElementById("result").innerText = data.answer;
+    }
+  </script>
+</body>
+</html>
